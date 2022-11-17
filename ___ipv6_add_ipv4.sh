@@ -9,7 +9,7 @@ echo -e "download wgcf wireguard-go"
 
 wget https://github.acglink.org/P3TERX/wireguard-go-builder/releases/download/0.0.20220316/wireguard-go-linux-amd64.tar.gz
 tar zxf wireguard-go-linux-amd64.tar.gz
-mv wireguard-go /usr/local/bin
+mv wireguard-go /usr/bin/
 rm -f wireguard-go-linux-amd64.tar.gz
 # wgcf
 wget https://github.acglink.org/ViRb3/wgcf/releases/download/v2.2.15/wgcf_2.2.15_linux_amd64 -O /usr/local/bin/wgcf
