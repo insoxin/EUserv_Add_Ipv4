@@ -2,6 +2,7 @@
 #更新安装环境
 echo -e "更新安装环境"
 apt update
+apt-get install wireguard-tools
 apt install -y wireguard
 
 #download wgcf wireguard-go
