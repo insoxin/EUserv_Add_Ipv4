@@ -2,29 +2,23 @@
 #更新安装环境
 echo -e "更新安装环境"
 apt update
-UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install curl
-apt install lsb-release iptables -y
-echo "deb http://deb.debian.org/debian/ $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
-apt update
-apt install -y net-tools iproute2 openresolv dnsutils
-apt install wireguard-tools --no-install-recommends
-
-
+apt install -y wireguard
 
 #download wgcf wireguard-go
 echo -e "download wgcf wireguard-go"
-# wireguard-go
+
 wget https://github.acglink.org/P3TERX/wireguard-go-builder/releases/download/0.0.20220316/wireguard-go-linux-amd64.tar.gz
 tar zxf wireguard-go-linux-amd64.tar.gz
-mv wireguard-go /usr/local/sbin
+mv wireguard-go /usr/local/bin
 rm -f wireguard-go-linux-amd64.tar.gz
 # wgcf
-wget https://github.acglink.org/ViRb3/wgcf/releases/download/v2.2.15/wgcf_2.2.15_linux_amd64 -O /usr/local/sbin/wgcf
+wget https://github.acglink.org/ViRb3/wgcf/releases/download/v2.2.15/wgcf_2.2.15_linux_amd64 -O /usr/local/bin/wgcf
+
 
 #添加权限
 echo -e "添加权限"
-chmod +x /usr/local/sbin/wgcf
-chmod +x /usr/local/sbin/wireguard-go
+chmod +x /usr/local/bin/wgcf
+chmod +x /usr/bin/wireguard-go
 
 #注册生成wgcf账号，配置文件
 echo -e "注册生成wgcf账号，配置文件"
@@ -51,9 +45,8 @@ wg-quick down wgcf
 
 #设置进程守护 开机启动
 echo -e "设置进程守护 开机启动"
-
-systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
+systemctl enable wg-quick@wgcf
 
 #删除本地路径多余文件
 echo -e "删除本地路径多余文件"
