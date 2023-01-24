@@ -56,4 +56,4 @@ rm -f ___ipv6_add_ipv4* wgcf* wireguard-go*
 echo -e "设置ipv4优先并测试"
 echo 'precedence  ::ffff:0:0/96   100' |  tee -a /etc/gai.conf
 echo -e "显示ipv4地址即成功"
-curl ip.me
+curl ipv4.ip.sb
